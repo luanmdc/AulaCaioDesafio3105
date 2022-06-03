@@ -1,0 +1,78 @@
+# Task
+
+## Métodos
+
+- Crie um método que receba uma lista de Hospitais e classifique quantos são públicos e quantos são privados;
+- Crie um método que receba uma lista de Playlist e classifique as quantidades de música por estilo, porém, só adicione músicas que tem mais de 3 minutos de duração;
+- Crie um método que receba uma lista de Pokemon e classifique quantos Pokemon por tipo foram recebidos, porém, só adicione Pokemon que são lendários;
+- Crie um método que receba uma lista de Filmes, separe em listas distintas filmes para maiores de 12 anos e filmes de classificação livre. Para cada uma das listas, classifique quantos filmes de cada gênero foram recebidos e exiba de forma individual;
+
+
+## Código feito em Aula
+
+```java
+public void contarContinentes(List<Pais> paises) {
+        int contador = 1;
+        Map<String, Integer> quantidadeContinentes = new HashMap<>();
+
+        for (Pais pais : paises) {
+            if (!quantidadeContinentes.containsKey(pais.getContinente())) {
+                quantidadeContinentes.put(pais.getContinente(), contador);
+            } else {
+                Integer valor = quantidadeContinentes.get(pais.getContinente());
+                quantidadeContinentes.replace(pais.getContinente(), valor, valor + contador);
+            }
+        }
+
+        System.out.println(quantidadeContinentes);
+    }
+
+    public void contarEspecies(List<Animal> animals) {
+        int contador = 5;
+        Map<String, Integer> quantidadeEspecies = new HashMap<>();
+
+        for (Animal animal : animals) {
+            if (!quantidadeEspecies.containsKey(animal.getEspecie())) {
+                quantidadeEspecies.put(animal.getEspecie(), contador);
+            } else {
+                Integer valor = quantidadeEspecies.get(animal.getEspecie());
+                quantidadeEspecies.replace(animal.getEspecie(), valor, valor + contador);
+            }
+        }
+    }
+
+    public void classificacaoEtaria(List<Pessoa> pessoas) {
+        Map<String, Integer> classificacaoEtaria = new HashMap<>();
+
+        //For na lista de pessoa, para iterar sobre cada item da lista
+        for (Pessoa pessoa : pessoas) {
+
+            //Verificação da idade, se for maior, entra nesse bloco
+            if (pessoa.getIdade() > 18) {
+
+                //Verifica se existe no map alguma chave chamada "Maior", se não existir, entra
+                if (!classificacaoEtaria.containsKey("Maior")) {
+
+                    //Adiciono no map a chave "Maior" com o valor inicial 1
+                    classificacaoEtaria.put("Maior", 1);
+                } else {
+                    //Se já existir, eu pego o valor que tem pra chave "Maior"
+                    Integer quantidade = classificacaoEtaria.get("Maior");
+
+                    //Substituo o valor antigo por um valor agregago a 1
+                    classificacaoEtaria.replace("Maior", quantidade, quantidade + 1);
+                }
+            } else {
+
+                if (!classificacaoEtaria.containsKey("Menor")) {
+                    classificacaoEtaria.put("Menor", 1);
+                } else {
+                    Integer quantidade = classificacaoEtaria.get("Menor");
+                    classificacaoEtaria.replace("Menor", quantidade, quantidade + 1);
+                }
+            }
+        }
+
+        System.out.println(classificacaoEtaria);
+    }
+```
